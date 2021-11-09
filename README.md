@@ -1,6 +1,6 @@
 # test_stacked
 
-A new Flutter project.
+A new Flutter project that allows you to test Stacked state management.
 
 ## Getting Started
 
