@@ -4,7 +4,9 @@ A new Flutter project that allows you to test Stacked state management.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Use the build runner command before you run the application, adding new routes, or new services
+- see the auth service for an example of a new service
+- see the router.dart for how to add new routes
 
 #### build_runner:
 
