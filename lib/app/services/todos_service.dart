@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:amplify_datastore/amplify_datastore.dart';
@@ -16,17 +17,6 @@ class TodosService {
         .onError((error, stackTrace) => false);
   }
 
-  // get all the todos as a future
-  Future<List<Todo>> getTodos() async {
-    List<Todo> todos = [];
-    try {
-      todos = await amplify.DataStore.query(Todo.classType);
-    } catch (e) {
-      log("Could not query DataStore: " + e.toString());
-    }
-    return todos;
-  }
-
   // trying to modify the data before returning the future value
   Future<List<Todo>> getTodosPipe() async {
     List<Todo> todos = [];
@@ -39,6 +29,17 @@ class TodosService {
         }
         return _tempList;
       });
+    } catch (e) {
+      log("Could not query DataStore: " + e.toString());
+    }
+    return todos;
+  }
+
+  // get all the todos as a future
+  Future<List<Todo>> getTodos() async {
+    List<Todo> todos = [];
+    try {
+      todos = await amplify.DataStore.query(Todo.classType);
     } catch (e) {
       log("Could not query DataStore: " + e.toString());
     }
@@ -60,7 +61,7 @@ class TodosService {
   // Stream<QuerySnapshot<Todo>> getTodosStreamPipe() async* {
   //   Stream<QuerySnapshot<Todo>> todos = const Stream.empty();
   //   try {
-  //     todos = amplify.DataStore.observeQuery(Todo.classType).pipe(streamConsumer);
+  //     todos = amplify.DataStore.observeQuery(Todo.classType).pipe(StreamConsumer);
   //   } catch (e) {
   //     log("Could not query DataStore: " + e.toString());
   //   }

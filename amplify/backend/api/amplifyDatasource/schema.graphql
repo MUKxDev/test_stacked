@@ -1,11 +1,14 @@
-type User @model @auth(rules: [{allow: public}]) {
+type User @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
   image: String
   Todos: [Todo] @connection(keyName: "byUser", fields: ["id"])
 }
 
-type Todo @model @auth(rules: [{allow: public}]) @key(name: "byUser", fields: ["userID"]) {
+type Todo
+  @model
+  @auth(rules: [{ allow: public }])
+  @key(name: "byUser", fields: ["userID"]) {
   id: ID!
   name: String!
   description: String

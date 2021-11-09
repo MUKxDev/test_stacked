@@ -40,6 +40,15 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   children: const [
+                    Divider(),
+                    Text(
+                      'ReactiveValue',
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Divider(),
                     Text(
                       'both bellow uses the same ReactiveValue in a reactiveServices',
                       textAlign: TextAlign.center,

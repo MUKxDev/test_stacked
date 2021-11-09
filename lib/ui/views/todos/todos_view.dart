@@ -41,9 +41,9 @@ class TodosView extends StatelessWidget {
                 ),
                 _instructionsWidget(),
                 const Text('User todos'),
-                _userTodos(model),
+                _userTodos(model, context),
                 const Text('All todos'),
-                _allTodos(model),
+                _allTodos(model, context),
               ],
             ),
           ),
@@ -57,6 +57,14 @@ class TodosView extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: const [
+          Text(
+            'Instructions',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(),
           Text('click on todo to print todoId'),
           Divider(),
           Text('hold a todo to delete the todo'),
@@ -65,7 +73,7 @@ class TodosView extends StatelessWidget {
     );
   }
 
-  Widget _userTodos(TodosViewModel model) {
+  Widget _userTodos(TodosViewModel model, BuildContext context) {
     return model.fetchingUserTodos
         ? const Center(
             child: CircularProgressIndicator(),
@@ -92,7 +100,7 @@ class TodosView extends StatelessWidget {
                         margin: const EdgeInsets.all(16.0),
                         padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
-                          color: Colors.blueGrey[200],
+                          color: Theme.of(context).colorScheme.primary,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: ListView.builder(
@@ -106,12 +114,20 @@ class TodosView extends StatelessWidget {
                                   margin: const EdgeInsets.all(8.0),
                                   padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
-                                    color: Colors.blueGrey[100],
-                                    borderRadius: BorderRadius.circular(20),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background
+                                        .withAlpha(150),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
                                     children: [
-                                      Text(todos[index].id),
+                                      Text(
+                                        todos[index].id,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                       const SizedBox(
                                         height: 8,
                                       ),
@@ -124,7 +140,13 @@ class TodosView extends StatelessWidget {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      Text(todos[index].userID ?? 'no user'),
+                                      Text(
+                                        'UserId: ' +
+                                            (todos[index].userID ?? 'no user'),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ],
                                   ),
                                 ),
@@ -136,7 +158,7 @@ class TodosView extends StatelessWidget {
           );
   }
 
-  Widget _allTodos(TodosViewModel model) {
+  Widget _allTodos(TodosViewModel model, BuildContext context) {
     return model.fetchingTodos
         ? const Center(
             child: CircularProgressIndicator(),
@@ -163,7 +185,7 @@ class TodosView extends StatelessWidget {
                         margin: const EdgeInsets.all(16.0),
                         padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
-                          color: Colors.blueGrey[200],
+                          color: Theme.of(context).colorScheme.primary,
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: ListView.builder(
@@ -177,12 +199,20 @@ class TodosView extends StatelessWidget {
                                   margin: const EdgeInsets.all(8.0),
                                   padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
-                                    color: Colors.blueGrey[100],
-                                    borderRadius: BorderRadius.circular(20),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .background
+                                        .withAlpha(150),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Column(
                                     children: [
-                                      Text(todos[index].id),
+                                      Text(
+                                        todos[index].id,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                       const SizedBox(
                                         height: 8,
                                       ),
@@ -195,7 +225,13 @@ class TodosView extends StatelessWidget {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      Text(todos[index].userID ?? 'no user'),
+                                      Text(
+                                        'UserId: ' +
+                                            (todos[index].userID ?? 'no user'),
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
                                     ],
                                   ),
                                 ),

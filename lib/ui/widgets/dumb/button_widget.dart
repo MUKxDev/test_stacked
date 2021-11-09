@@ -9,9 +9,9 @@ class ButtonWidget extends StatelessWidget {
 
   // styles - lightTheme
   final ButtonStyle myButtonStyleLight = ElevatedButton.styleFrom(
-    onPrimary: Colors.purple[50],
-    primary: Colors.purple[300],
-    shadowColor: Colors.purple[800],
+    onPrimary: Colors.green[50],
+    primary: Colors.green[300],
+    shadowColor: Colors.green[800],
     minimumSize: const Size(88, 36),
     elevation: 10,
     padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -21,9 +21,9 @@ class ButtonWidget extends StatelessWidget {
   );
   // styles - darkTheme
   final ButtonStyle myButtonStyleDark = ElevatedButton.styleFrom(
-    onPrimary: Colors.purple[900],
-    primary: Colors.purple[400],
-    shadowColor: Colors.purple[800],
+    onPrimary: Colors.green[900],
+    primary: Colors.green[400],
+    shadowColor: Colors.green[800],
     minimumSize: const Size(88, 36),
     padding: const EdgeInsets.symmetric(horizontal: 16),
     shape: const RoundedRectangleBorder(

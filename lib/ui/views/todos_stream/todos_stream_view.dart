@@ -56,6 +56,14 @@ class TodosStreamView extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: const [
+          Text(
+            'Instructions',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(),
           Text('click on todo to print todoId'),
           Divider(),
           Text('hold a todo to delete the todo'),
@@ -79,21 +87,19 @@ class TodosStreamView extends StatelessWidget {
                       ? _noDataWidget()
                       : (snapshot.data!.items.isEmpty
                           ? _emptyTodosWidget()
-                          : _todosWidget(snapshot, model));
+                          : _todosWidget(snapshot, model, context));
             },
           );
   }
 
-  Expanded _todosWidget(
-    AsyncSnapshot<QuerySnapshot<Todo>> snapshot,
-    TodosStreamViewModel model,
-  ) {
+  Expanded _todosWidget(AsyncSnapshot<QuerySnapshot<Todo>> snapshot,
+      TodosStreamViewModel model, BuildContext context) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.all(16.0),
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Colors.blueGrey[200],
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: ListView.builder(
@@ -107,12 +113,18 @@ class TodosStreamView extends StatelessWidget {
                   margin: const EdgeInsets.all(8.0),
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: Colors.blueGrey[100],
-                    borderRadius: BorderRadius.circular(20),
+                    color:
+                        Theme.of(context).colorScheme.background.withAlpha(150),
+                    borderRadius: BorderRadius.circular(10),
                   ),
                   child: Column(
                     children: [
-                      Text(snapshot.data!.items[index].id),
+                      Text(
+                        snapshot.data!.items[index].id,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       const SizedBox(
                         height: 8,
                       ),
@@ -125,7 +137,11 @@ class TodosStreamView extends StatelessWidget {
                       const SizedBox(
                         height: 8,
                       ),
-                      Text(snapshot.data!.items[index].userID ?? 'no user'),
+                      Text(
+                        (snapshot.data!.items[index].userID ?? 'no user'),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                     ],
                   ),
                 ),

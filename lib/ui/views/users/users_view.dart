@@ -42,7 +42,7 @@ class UsersView extends StatelessWidget {
                     ? _busyWidget()
                     : (model.data!.isEmpty
                         ? _emptyUsersWidget()
-                        : _usersWidget(model)),
+                        : _usersWidget(context, model)),
               ],
             ),
           ),
@@ -51,28 +51,13 @@ class UsersView extends StatelessWidget {
     );
   }
 
-  Padding _instructionsWidget() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        children: const [
-          Text('click on user to go to todo'),
-          Divider(),
-          Text('double click on user to go to todo stream'),
-          Divider(),
-          Text('hold a user to delete the user'),
-        ],
-      ),
-    );
-  }
-
-  Expanded _usersWidget(UsersViewModel model) {
+  Expanded _usersWidget(BuildContext context, UsersViewModel model) {
     return Expanded(
       child: Container(
         margin: const EdgeInsets.all(16.0),
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: Colors.blueGrey[200],
+          color: Theme.of(context).colorScheme.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         child: ListView.separated(
@@ -87,14 +72,36 @@ class UsersView extends StatelessWidget {
                 margin: const EdgeInsets.all(8.0),
                 padding: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
-                  color: Colors.blueGrey[100],
-                  borderRadius: BorderRadius.circular(20),
+                  color:
+                      Theme.of(context).colorScheme.background.withAlpha(150),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                child: Column(
+                child: Row(
                   children: [
-                    Text(model.data?[index].id ?? 'no id'),
-                    const Divider(),
-                    Text(model.data?[index].name ?? 'no name'),
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: NetworkImage(model.data?[index].image ??
+                              'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png'),
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          Text(
+                            model.data?[index].id ?? 'no id',
+                            textAlign: TextAlign.center,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                          const Divider(),
+                          Text(model.data?[index].name ?? 'no name'),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -104,6 +111,29 @@ class UsersView extends StatelessWidget {
             return const Divider();
           },
         ),
+      ),
+    );
+  }
+
+  Padding _instructionsWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        children: const [
+          Text(
+            'Instructions',
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Divider(),
+          Text('click on user to go to todo'),
+          Divider(),
+          Text('double click on user to go to todo stream'),
+          Divider(),
+          Text('hold a user to delete the user'),
+        ],
       ),
     );
   }
