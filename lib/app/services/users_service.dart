@@ -8,12 +8,14 @@ import 'package:test_stacked/models/User.dart';
 class UsersService {
   final amplify = Amplify;
 
+  // create a user
   Future<bool> createUser(User user) async {
     return amplify.DataStore.save(user)
         .then((value) => true)
         .onError((error, stackTrace) => false);
   }
 
+  // get all the users as a future
   Future<List<User>> getUsers() async {
     List<User> users = [];
     try {
@@ -24,6 +26,7 @@ class UsersService {
     return users;
   }
 
+  // get a single user as a future
   Future<User> getUser(String userId) async {
     User user = User();
     try {
@@ -41,6 +44,7 @@ class UsersService {
     return user;
   }
 
+  // delete a single user as a future
   Future<bool> deleteUser(String userId) async {
     bool isDeleted = false;
     try {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_stacked/app/locator/locator.dart';
 import 'package:test_stacked/app/services/router_service.dart';
+import 'package:test_stacked/app/themes/app_theme.dart';
 
 class TestStackedApp extends StatelessWidget {
   const TestStackedApp({Key? key}) : super(key: key);
@@ -14,12 +15,8 @@ class TestStackedApp extends StatelessWidget {
       routeInformationParser: _routerService.router.defaultRouteParser(),
       routerDelegate: _routerService.router.delegate(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
-      ),
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
     );
   }
 }

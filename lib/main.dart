@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
 import 'package:test_stacked/app/app.dart';
@@ -25,7 +23,7 @@ main() async {
   setupLocator();
 
   /// Runs the app :)
-  runApp(TestStackedApp());
+  runApp(const TestStackedApp());
 }
 
 Future<void> _configureAmplify() async {

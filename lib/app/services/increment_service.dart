@@ -1,6 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:stacked/stacked.dart';
 
+// make the service with "ReactiveServiceMixin"
 @lazySingleton
 class IncrementService with ReactiveServiceMixin {
   // declare a reactive value
