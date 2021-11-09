@@ -22,6 +22,6 @@ you can add it as an alias using the below command and then use `generate` inste
 alias generate="flutter pub run build_runner build --delete-conflicting-outputs"
 ```
 
-A few resources to get you started if this is your first Flutter project:
+See the Stacked documentation for any help in this Flutter project:
 
 - [Stacked](https://pub.dev/packages/stacked)
